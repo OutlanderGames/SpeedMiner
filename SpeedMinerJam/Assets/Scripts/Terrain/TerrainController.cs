@@ -92,7 +92,7 @@ public class TerrainController : MonoBehaviour
     {
         GameObject mineralLine;
 
-        //Línea 2
+        //LÃ­nea 2
         mineralLine = Instantiate(line, position11.transform.position, Quaternion.identity);
         mineral2.Add(mineralLine);
 
@@ -235,7 +235,7 @@ public class TerrainController : MonoBehaviour
         //Desplazamos los tiles
         foreach (GameObject mineral in mineral1)
         {
-            //Comprobamos posicion y asignamos nueva posición
+            //Comprobamos posicion y asignamos nueva posiciÃ³n
             if (mineral.transform.position == position0.transform.position) 
             { 
                 mineral.transform.position = position5.transform.position;
@@ -254,7 +254,7 @@ public class TerrainController : MonoBehaviour
     {
         foreach (GameObject mineral in mineral2)
         {
-            //Comprobamos posicion y asignamos nueva posición
+            //Comprobamos posicion y asignamos nueva posiciÃ³n
             if (mineral.transform.position == position01.transform.position)
             {
                 mineral.transform.position = position51.transform.position;
