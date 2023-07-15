@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class terrainLine : MonoBehaviour
 {
+    //Genera una linea de bloques basándose en la funcion random de bloque.
+
     public GameObject izq, center, derch;
 
     public void Reset()

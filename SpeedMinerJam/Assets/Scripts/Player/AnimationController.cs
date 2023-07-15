@@ -10,6 +10,7 @@ public class AnimationController : MonoBehaviour
 
     private void Update()
     {
+        //Controla las animaciones encarar y picar
         switch (playerController.facing)
         {
             case "down":
@@ -38,7 +39,7 @@ public class AnimationController : MonoBehaviour
         }
         
     }
-
+    //Timers introducidos tras picar para que en un breve instante tras hacer la acción se quede mirando hacia el último sitio que picó.
     IEnumerator Blink()
     {
 

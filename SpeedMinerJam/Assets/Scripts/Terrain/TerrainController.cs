@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class TerrainController : MonoBehaviour
 {
+    //Prefab de bloque en blanco y de cada línea.
     public GameObject blockPre;
     public GameObject line;
 
-
+    //Posiciopnes centrales de cada fila de bloques, bloque en blanco
     public List<GameObject> mineral1,mineral2;
     public GameObject position0, position1,position2,position3,position4,position5, position01, position11, position21, position31, position41, position51;
     public Block block;
 
+    //Minuto de referencia para saber cómo rellenar cada bloque vacío del pool de bloques
     public char[] minuto3, minuto2, minuto1;
 
     public List<GameObject> floor = new List<GameObject>();
@@ -24,6 +26,7 @@ public class TerrainController : MonoBehaviour
         fillRatio();
     }
     
+    //Rellena la lista de minerales que pueden aparacer.
     public void fillList()
     {
 
@@ -64,6 +67,7 @@ public class TerrainController : MonoBehaviour
         mineral2.Clear();
     }
   
+    //Genera las filas de materiales para el jugador uno teniendo en cuenta las posiciones centrales en la que pueden aparecer los bloques.
     public void createTiles1()
     {
         GameObject mineralLine;
@@ -88,6 +92,8 @@ public class TerrainController : MonoBehaviour
         
 
     }
+
+    //Genera las filas de materiales para el jugador dos teniendo en cuenta las posiciones centrales en la que pueden aparecer los bloques.
     public void createTiles2()
     {
         GameObject mineralLine;
@@ -117,7 +123,7 @@ public class TerrainController : MonoBehaviour
         minuto2 = new char[100];
         minuto3 = new char[100];
 
-        //Rellenamos primer minuto de juego
+        //Rellena primer minuto de juego con las letras clave que representan el material, además del número de bloques que pueden aparecer el primer minuto.
         for (int i = 0; i < 30; i++)
         {
             minuto1[i] = 'v';
@@ -149,7 +155,7 @@ public class TerrainController : MonoBehaviour
         }
 
 
-        //Rellenamos segundo minuto de juego
+        //Mismo funcionamiento que el primer minuto pero aumenta ligeramente la cantidad de bloques raros que van apareciendo 
         for (int i = 0; i < 26; i++)
         {
             minuto2[i] = 'v';
@@ -187,7 +193,8 @@ public class TerrainController : MonoBehaviour
         }
 
 
-        //Rellenamos tercer minuto de juego
+        //Aumenta la cantidad de bloques raros que pueden aparecer en el tercer minuto.
+
         for (int i = 0; i < 25; i++)
         {
             minuto3[i] = 'v';
@@ -229,13 +236,13 @@ public class TerrainController : MonoBehaviour
 
     }
 
+    //Desplaza los bloques del jugador 1
     public void moveTiles()
     {
-        //GameObject mineralLine;
-        //Desplazamos los tiles
+        //Desplaza los tiles
         foreach (GameObject mineral in mineral1)
         {
-            //Comprobamos posicion y asignamos nueva posición
+            //Comprueba la posicion y asigna una nueva 
             if (mineral.transform.position == position0.transform.position) 
             { 
                 mineral.transform.position = position5.transform.position;
@@ -250,11 +257,11 @@ public class TerrainController : MonoBehaviour
 
     }
 
+    //Desplaza los bloques del jugador 2
     public void moveTiles2()
     {
         foreach (GameObject mineral in mineral2)
         {
-            //Comprobamos posicion y asignamos nueva posición
             if (mineral.transform.position == position01.transform.position)
             {
                 mineral.transform.position = position51.transform.position;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Acceso al controlador de juego y terreno, además de las tres posiciones en horizontal que puede ocupar
     public GameObject Izq,Center,Derch;
     public TerrainController terrainController;
     public GameManager gameManager;
@@ -27,31 +28,12 @@ public class PlayerController : MonoBehaviour
         Move();
         Mine();
     }
-
-    private void FixedUpdate()
-    {
-        checkMaterial();
-    }
-
-    void checkMaterial()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, distance);
-        Debug.DrawRay(transform.position, range,Color.red);
-
-        if (hit.collider != null)
-        {
-            print(hit.collider.GetComponent<Block>().tipoMaterial);
-            print(hit.distance);
-        }
-        else
-        {
-            print("No collision");
-        }
-    }
     
-    //Aplicamos daño al bloque al que apunta el player
+    //Se aplica daño al bloque al que apunta el minero
     void Mine()
     {
+
+        //Dependiendo de hacia donde esté mirando (facing) hace daño en una de las tres direcciones.
         if (Input.GetKeyDown(KeyCode.Insert) && facing == "down") 
         {
             applyDmgDown(); 
@@ -78,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    //Seteamos la posición a la que apunta el player
+    //Cambia hacia donde está encarando el minero
     void facingMiner()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))facing ="left";
@@ -86,7 +68,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))facing = "down";
     }
 
-    //Movemos el minero a nueva posición si no esta bloqueada
+    //Se mueve el minero a nueva posición si no esta bloqueada
     void Move()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, distance);
@@ -137,21 +119,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //Gestiona el daño que se aplica a los bloques
     #region Damage
     void applyDmgDown()
     {
-
+            //Rayo de alcance de la acción picar hacia abajo
             RaycastHit2D hitDown = Physics2D.Raycast(transform.position, -Vector2.up, distance);
             
-
+            //Aplica el daño si el rayo detecta colisión.
             if (hitDown.collider != null)
             {
                
                 hitDown.collider.GetComponent<Block>().vida -= dmgPoints;
                 hitDown.collider.GetComponent<Block>().dmgDealer = true;
 
-        }
-        else
+            }
+            else
             {
                 print("No element to hit");
             }
@@ -160,6 +143,7 @@ public class PlayerController : MonoBehaviour
 
     void applyDmgLeft()
     {
+        //Rayo de alcance para picar hacia izquierda
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, distance);
 
         if (hitLeft.collider != null)
@@ -174,6 +158,7 @@ public class PlayerController : MonoBehaviour
 
     void applyDmgRight()
     {
+        //Rayo de alcance para picar hacia la derecha
         RaycastHit2D hitRigth = Physics2D.Raycast(transform.position, Vector2.right, distance);
 
         if (hitRigth.collider != null)

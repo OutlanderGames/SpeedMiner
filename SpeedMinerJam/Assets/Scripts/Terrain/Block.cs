@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    //Recoge el tipo de material, los puntos que da cada uno, el ratio de aparicion, la vida que tiene cada bloque, llama al controlador del juego, de sprites, del jugador y de terreno
     public string tipoMaterial;
     public SpriteRenderer spriteRenderer;
     public TerrainController terrainController;
@@ -15,13 +16,13 @@ public class Block : MonoBehaviour
     public Sprite sprite1, sprite2, sprite3, sprite4, sprite5,sprite6;
     public char[] proportion;
 
+    //Que minero es la fuente de daño para calcular a donde van los puntos por picar el bloque
     //TRUE is player 1 :: FALSE is player 2
     public bool dmgDealer = true;
 
     public string state;
 
     public PlayerController playerController;
-
 
 
     private void Start() 
@@ -32,21 +33,23 @@ public class Block : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("gamemanager").GetComponent<GameManager>();
 
 
-        //Actions 
+        //Funciones 
         setProportions();
         random();
     }
 
     private void Update()
-    {
-
+    {    
         checkLife();
     }
+
+    //Resta vida a cada bloque en base a los puntos de daño del minero
     void getDmg()
     {
         vida -= playerController.dmgPoints;
     }
 
+    //Probabilidades de que salga un tipo de bloque u otro cada minuto de partida 
     void setProportions()
     {
         if (gameManager.timerMin == 2) proportion = terrainController.minuto1;
@@ -54,6 +57,7 @@ public class Block : MonoBehaviour
         else proportion = terrainController.minuto3;
     }
 
+    //Chequea la vida de cada bloque, si es menor que cero y su fuente de daño, asigna puntos al jugador que ha destruido el bloque.
     void checkLife()
     {
         if (vida <= 0)
@@ -74,6 +78,7 @@ public class Block : MonoBehaviour
 
     }
     
+    //Setea las caracteríticas individuales como la vida y los puntos que da cada bloque en base a la función proportion que es la que dependiendo de cada minunto genera diferentes packs de bloques
    public void random()
     {
         int rnd;

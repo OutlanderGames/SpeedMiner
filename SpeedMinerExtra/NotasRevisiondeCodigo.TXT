@@ -1,0 +1,14 @@
+- Cambiar los controles que no sen dislexicos
+
+- El score no muestra puntuaciones de 2 cifras o más además son scores no diseñados
+
+- Pone press start y hay que pulsar espacio para empezar en el menú de inicio
+
+- El jugador rojo se voltea al contrario de donde se mueve
+
+- La acción picar tarda un tiempo en realizarse y hace un doble picado, lo ideal sería que se pudiera machacar botones y que hicera una animacion unica e instantánea para machacar botones
+
+- El timer tiene los segundos sin el cero delante
+
+
+
